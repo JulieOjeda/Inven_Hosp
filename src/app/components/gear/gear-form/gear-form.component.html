@@ -1,0 +1,32 @@
+<!-- src/app/form-device/form-device.component.html -->
+<div class="container">
+    <form [formGroup]="deviceForm" (ngSubmit)="onSubmit()">
+      <div *ngFor="let control of deviceForm.controls | keyvalue">
+        <div class="form-group">
+          <label [for]="control.key">{{ control.key | titlecase }}</label>
+          <input
+            *ngIf="control.key !== 'createdAt' && control.key !== 'updatedAt' && control.key !== 'manufacturingYear' && control.key !== 'weight'"
+            type="text"
+            [formControlName]="control.key"
+            class="form-control"
+            [placeholder]="control.key | titlecase"
+          />
+          <input
+            *ngIf="control.key === 'manufacturingYear' || control.key === 'weight'"
+            type="number"
+            [formControlName]="control.key"
+            class="form-control"
+            [placeholder]="control.key | titlecase"
+          />
+          <div *ngIf="control.value.invalid && control.value.touched" class="text-danger">
+            <small *ngIf="control.value.errors?.['required']">Este campo es obligatorio.</small>
+            <small *ngIf="control.value.errors?.['maxlength']">Excede el tamaño máximo permitido.</small>
+            <small *ngIf="control.value.errors?.['min']">Valor no válido.</small>
+            <small *ngIf="control.value.errors?.['max']">Valor fuera de rango.</small>
+          </div>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary" [disabled]="deviceForm.invalid">Enviar</button>
+    </form>
+  </div>
+  
