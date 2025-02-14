@@ -11,10 +11,26 @@
 
                 <!-- Selector de área -->
                 <mat-form-field *ngIf="controlName === 'areaAssigned'" appearance="outline" class="form-field">
-                  <mat-select [formControlName]="controlName">
-                    <mat-option *ngFor="let option of areas" [value]="option">{{ option }}</mat-option>
+                  <mat-label>Área Asignada</mat-label>
+                  <mat-select
+                    [formControlName]="controlName"
+                    (selectionChange)="onAreaSelected($event.value)"
+                  >
+                    <mat-option *ngFor="let option of areas" [value]="option.name">{{ option.name }}</mat-option>
                   </mat-select>
                 </mat-form-field>
+
+                <!-- Campo de entrada para una nueva área -->
+                <mat-form-field *ngIf="controlName === 'areaAssigned'" appearance="outline" class="form-field">
+                  <mat-label>O ingresa una nueva área</mat-label>
+                  <input
+                    matInput
+                    placeholder="Escribe y presiona Enter"
+                    (keyup.enter)="addNewArea($event)"
+                    #newAreaInput
+                  />
+                </mat-form-field>
+
 
                 <!-- Inputs normales -->
                 <mat-form-field *ngIf="controlName !== 'areaAssigned' && controlName !== 'photo'" appearance="outline" class="form-field">

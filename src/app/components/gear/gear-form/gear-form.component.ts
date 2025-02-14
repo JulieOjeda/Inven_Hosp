@@ -4,7 +4,9 @@ import { GearApiService} from '../../../api/gear.api.service';
 import { Router } from '@angular/router';
 import { Gear } from '../../../interfaces/models/gear.model';
 import {OwlOptions} from 'ngx-owl-carousel-o';
-
+import {AreasService} from '../../../services/areas.service';
+import {Areas} from '../../../interfaces/models/areas.model';
+import {AreaApiService} from '../../../api/area.api.service';
 @Component({
   selector: 'app-gear-form',
   standalone: false,
@@ -20,7 +22,7 @@ export class GearFormComponent implements OnInit{
   }[]
   selectedFile: File | null = null;
   imagePreview: string | ArrayBuffer | null = null;
-  areas = ["Emergencias" , "Quirofano" , "Pediatria"]
+  areas: Areas[] = []
   // Configuración para el Slick Carousel
   customOptions: OwlOptions = {
     loop: true,
@@ -49,8 +51,11 @@ export class GearFormComponent implements OnInit{
   public additionalInfo: FormGroup
   label = new Map<string, string>();
   labels = ["nombre", "modelo de dispositivo", "numero de serie", "area", "fabricante", "descripcion", "resolucion", "fuente de energia", "tamaño", "conectivida", "año de fabricacion", "garantia", "datos extras", "Imagen","fecha de puesta en marcha", "descripcion para mantenimiento", "responsable" ]
+  selectedArea: string = "";
   constructor(private _gearService: GearApiService,
-    private _router:Router
+    private _router:Router,
+    private areasService: AreasService,
+    private areaApiService: AreaApiService
   ) {
     this.generalInfo = new FormGroup({
       name: new FormControl('', [Validators.required, Validators.maxLength(100)]),
@@ -102,6 +107,10 @@ export class GearFormComponent implements OnInit{
       this.label.set(key, this.labels[index])
       index++;
     });
+    this.areasService.list$.subscribe( (areas: Areas[])=>{
+      debugger
+      this.areas = areas
+    })
   }
 
   ngOnInit(): void {
@@ -184,5 +193,28 @@ export class GearFormComponent implements OnInit{
 
   getLabel(controlName: any) : string | undefined {
     return this.label.get(controlName)
+  }
+
+  onAreaSelected(value: string) {
+    this.selectedArea = value; // Guardar selección
+  }
+
+  addNewArea(event: Event) {
+    const inputElement = event.target as HTMLInputElement;
+    const newAreaName = inputElement.value.trim();
+
+    let newArea = {
+      itemsCount : 0,
+      createdAt : new Date(),
+      name : newAreaName
+    };
+    if (newArea && !this.areas.map( area => {return area.name} ).includes(newAreaName)) {
+      this.areaApiService.createArea( newArea).subscribe( (response) =>{
+        this.areasService.addItemToList(response)
+      })
+      this.generalInfo.get('areaAssigned')?.setValue(newArea.name); // Establecer el valor en el formulario
+    }
+
+    inputElement.value = ''; // Limpiar input
   }
 }
