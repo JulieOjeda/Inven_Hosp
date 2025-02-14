@@ -1,22 +1,22 @@
 export interface Gear {
-    _id: string
-    name: string
-    deviceModel: string
-    serialNumber: string
-    manufacturer: string
-    manufacturingYear: number
-    classification: string
-    weight: number
-    screenType: string
-    screenResolution: string
-    parametersMonitored: string
-    powerSupply: string
-    battery: string
-    connectivity: string
-    alarms: string
-    accessoriesIncluded: string
-    applicableStandards: string
-    warranty: string
-    createdAt: string
-    updatedAt: string
-  }
+  name: string;
+  deviceModel: string;
+  serialNumber: string;
+  areaAssigned: string;
+  manufacturer: string;
+  description: string;
+
+  screenResolution: string;
+  powerSupply: string;
+  weight: number;
+  connectivity: string;
+
+  manufacturingYear: number;
+  warranty: string;
+  extraData: string;
+  photo?: string;
+
+  startingDate: number;
+  descriptionMaintenance: string;
+  responsible: string;
+}

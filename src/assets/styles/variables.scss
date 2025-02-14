@@ -1,0 +1,34 @@
+// Definir colores base
+$primary-color: #4fd9e6; // Celeste brillante
+$secondary-color: #517fa4; // Azul oscuro de la barra lateral
+$button-color: #b6c1d1; // Gris suave para los botones
+$white-color: #ffffff; // Blanco
+$background-color: #f5f5f5; // Color de fondo general
+$border-color: #e0e0e0; // Gris claro para bordes
+
+// Tonos adicionales
+
+// Colores comunes
+$text-color: #333333; // Gris oscuro para el texto
+$highlight-color: #f7c54d; // Amarillo brillante para resaltar
+$success-color: #28a745; // Verde para mensajes de éxito
+$error-color: #dc3545; // Rojo para mensajes de error
+$warning-color: #ffc107; // Amarillo para advertencias
+$info-color: #17a2b8; // Azul para información
+
+// Fondos y sombras
+$background-light: #fafafa; // Fondo claro
+$background-dark: #dcdcdc; // Fondo más oscuro
+$box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); // Sombra suave
+$box-shadow-hover: 0 4px 10px rgba(0, 0, 0, 0.15); // Sombra al hacer hover
+
+// Colores para el navbar
+$navbar-bg-color: $secondary-color;
+$navbar-text-color: $white-color;
+
+// Colores para botones
+$button-bg-color: $button-color;
+$button-text-color: $secondary-color;
+
+// Otros colores útiles
+$link-color: #007bff; // Azul para links

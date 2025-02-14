@@ -8,7 +8,7 @@ import { Gear } from '../../../interfaces/models/gear.model';
   styleUrl: './gear-view.component.scss'
 })
 export class GearViewComponent {
-  @Input() gear: Gear | null = null; // Recibimos los datos del componente padre
+  @Input() gear: Gear | null = null;
 
   constructor() { }
 

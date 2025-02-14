@@ -1,0 +1,39 @@
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 16px;
+  background-color: #1abc9c;
+}
+
+.header-title {
+  flex-grow: 1;
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #34495e;
+}
+
+.header-buttons {
+  display: flex;
+  gap: 16px;
+}
+
+mat-raised-button {
+  border-radius: 20px; /* Bordes redondeados más pronunciados */
+  padding: 8px 24px;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: none; /* Evita que se convierta a mayúsculas */
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+  transition: all 0.3s ease; /* Transición suave para hover */
+}
+
+mat-raised-button:hover {
+  background-color: #e0e0e0; /* Sutil cambio de color al hacer hover */
+  box-shadow: 0px 8px 12px rgba(0, 0, 0, 0.15); /* Efecto hover con sombra más profunda */
+}
+
+mat-icon {
+  margin-right: 8px;
+}

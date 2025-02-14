@@ -1,0 +1,32 @@
+.gear-board-container{
+    width: 95%;
+    height: 95%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.gear-board-content{
+    display: flex;
+    height: 100%;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.gear-board-filter{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 15%;
+    align-items: flex-end;
+}
+
+.gear-board-list{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 80%;
+}

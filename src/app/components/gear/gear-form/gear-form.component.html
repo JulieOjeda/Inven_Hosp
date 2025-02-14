@@ -1,32 +1,32 @@
-<!-- src/app/form-device/form-device.component.html -->
-<div class="container">
-    <form [formGroup]="deviceForm" (ngSubmit)="onSubmit()">
-      <div *ngFor="let control of deviceForm.controls | keyvalue">
-        <div class="form-group">
-          <label [for]="control.key">{{ control.key | titlecase }}</label>
-          <input
-            *ngIf="control.key !== 'createdAt' && control.key !== 'updatedAt' && control.key !== 'manufacturingYear' && control.key !== 'weight'"
-            type="text"
-            [formControlName]="control.key"
-            class="form-control"
-            [placeholder]="control.key | titlecase"
-          />
-          <input
-            *ngIf="control.key === 'manufacturingYear' || control.key === 'weight'"
-            type="number"
-            [formControlName]="control.key"
-            class="form-control"
-            [placeholder]="control.key | titlecase"
-          />
-          <div *ngIf="control.value.invalid && control.value.touched" class="text-danger">
-            <small *ngIf="control.value.errors?.['required']">Este campo es obligatorio.</small>
-            <small *ngIf="control.value.errors?.['maxlength']">Excede el tamaño máximo permitido.</small>
-            <small *ngIf="control.value.errors?.['min']">Valor no válido.</small>
-            <small *ngIf="control.value.errors?.['max']">Valor fuera de rango.</small>
-          </div>
+<div class="gear-form-container" *ngIf="steps.length > 0">
+  <owl-carousel-o [options]="customOptions">
+    <ng-container *ngFor="let step of steps">
+      <ng-template carouselSlide>
+        <div class="step">
+          <h2>{{ step.title }}</h2>
+          <form [formGroup]="step.form">
+            <div class="gear-form-grid">
+              <div *ngFor="let controlName of getControls(step.form)" class="form-row">
+                <label class="form-label" [for]="controlName">{{ controlName | titlecase }}</label>
+                <mat-form-field appearance="outline" class="form-field">
+                  <input
+                    matInput
+                    [formControlName]="controlName"
+                    [id]="controlName"
+                    [type]="getControlType(controlName)"
+                  />
+                  <mat-error *ngIf="step.form.get(controlName)?.invalid && step.form.get(controlName)?.touched">
+                    Campo inválido
+                  </mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+          </form>
         </div>
-      </div>
-      <button type="submit" class="btn btn-primary" [disabled]="deviceForm.invalid">Enviar</button>
-    </form>
-  </div>
-  
+      </ng-template>
+    </ng-container>
+  </owl-carousel-o>
+  <button mat-raised-button color="primary" (click)="onSubmit()">
+    Enviar
+  </button>
+</div>

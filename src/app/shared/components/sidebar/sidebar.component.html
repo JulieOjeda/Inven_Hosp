@@ -1,0 +1,29 @@
+<div class="sidebar-container" [class.minimized]="isMinimized">
+  <div class="toggle-button" (click)="toggleSidebar()">
+    <mat-icon>{{ isMinimized ? 'menu_open' : 'menu' }}</mat-icon>
+  </div>
+
+  <div class="sidebar-content">
+    <div class="sidebar-header">
+      <h3 *ngIf="!isMinimized">{{ client.name }}</h3>
+      <img [src]="logoUrl | fallbacksrc:'/assets/images/hospital.svg'" class="sidebar-logo">
+    </div>
+
+    <div class="sidebar-options">
+      <ul>
+        <li routerLink="board/areas" routerLinkActive="active">
+          <mat-icon>business</mat-icon>
+          <span *ngIf="!isMinimized">Areas</span>
+        </li>
+        <li routerLink="board/gear" routerLinkActive="active">
+          <mat-icon>settings</mat-icon>
+          <span *ngIf="!isMinimized">Gears</span>
+        </li>
+        <li routerLink="board/report" routerLinkActive="active">
+          <mat-icon>bar_chart</mat-icon>
+          <span *ngIf="!isMinimized">Reports</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

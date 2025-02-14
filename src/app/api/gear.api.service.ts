@@ -7,7 +7,7 @@ import { Gear } from '../interfaces/models/gear.model';
 @Injectable({
   providedIn: 'root',
 })
-export class GearService {
+export class GearApiService {
   private apiUrl = 'http://localhost:3000/gear'; // URL de la API
 
   constructor(private http: HttpClient) {}

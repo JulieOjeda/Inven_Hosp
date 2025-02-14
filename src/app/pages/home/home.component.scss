@@ -1,0 +1,14 @@
+.home-container {
+    display: grid;
+    grid-template-columns: repeat(21, 4.76%); /* 100% dividido en 21 columnas */
+    grid-template-rows: repeat(21, 4.76%);    /* 100% dividido en 21 filas */
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    height: 100vh; /* Hace que el contenedor ocupe toda la altura de la ventana */
+    width: 100%;   /* Hace que el contenedor ocupe todo el ancho de la ventana */
+}
+
+.div1 { grid-area: 1 / 2 / 3 / 22; } /* Mantiene su proporción en la nueva cuadrícula */
+.div2 { grid-area: 1 / 1 / 22 / 4; } /* Extendido en filas para adaptarse */
+.div3 { grid-area: 21 / 1 / 22 / 22; } /* Ajustado para la última fila */
+.home-content { grid-area: 3 / 4 / 22 / 22; } /* Ajustado para ocupar el centro de la cuadrícula */

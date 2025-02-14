@@ -1,0 +1,14 @@
+<mat-toolbar color="secondary" class="header-container">
+  <!-- Nombre del cliente -->
+  <h5 class="header-title">{{ client.name }}</h5>
+
+  <!-- Botones de acciones -->
+  <span class="header-buttons">
+    <button mat-raised-button color="accent" (click)="clickAddEvent()">
+      <mat-icon>add</mat-icon> Add
+    </button>
+    <button mat-raised-button color="warn" (click)="clickLogoutEvent()">
+      <mat-icon>exit_to_app</mat-icon> Logout
+    </button>
+  </span>
+</mat-toolbar>

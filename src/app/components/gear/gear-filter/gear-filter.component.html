@@ -1,0 +1,18 @@
+<div class="gear-filter-container">
+    <div class="gear-filter-content">
+        <div class="gear-filter-info">
+            <h4>Filter equipment by Area</h4>
+        </div>
+        <div class="gear-filter-picker">
+            <div *ngFor="let area of areas">
+                <button
+                class="option"
+                [class.selected]="selectedOption === area.name"
+                (click)="selectOption(area.name)">
+                {{area.name}}
+                </button>
+            </div>
+          </div>
+          
+    </div>
+</div>
