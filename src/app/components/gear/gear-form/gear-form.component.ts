@@ -109,7 +109,6 @@ export class GearFormComponent implements OnInit{
   }
 
   onSubmit(): void {
-    debugger
     if (this.isFormValid()) {
       const data = {
         ...this.generalInfo.value,
