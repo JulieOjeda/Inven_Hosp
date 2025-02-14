@@ -108,7 +108,6 @@ export class GearFormComponent implements OnInit{
       index++;
     });
     this.areasService.list$.subscribe( (areas: Areas[])=>{
-      debugger
       this.areas = areas
     })
   }
