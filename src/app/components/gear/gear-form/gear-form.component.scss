@@ -47,3 +47,19 @@ mat-form-field {
     width: 100%;
   }
 }
+.image-preview {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.preview-image {
+  max-width: 150px; /* Ancho máximo de la imagen */
+  max-height: 150px; /* Alto máximo de la imagen */
+  border-radius: 8px; /* Bordes redondeados */
+  object-fit: cover; /* Ajuste de la imagen */
+  border: 1px solid #ccc; /* Borde ligero */
+  padding: 4px;
+  background: #f9f9f9;
+}

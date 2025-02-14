@@ -1,47 +1,66 @@
 <!-- src/app/components/gear/gear-view/gear-view.component.html -->
 <div class="gear-details">
-    <h2>Detalles del Equipo</h2>
-    <table class="table">
-      <tr>
-        <th>Nombre</th>
-        <td>{{ gear?.name }}</td>
-      </tr>
-      <tr>
-        <th>Modelo</th>
-        <td>{{ gear?.deviceModel }}</td>
-      </tr>
-      <tr>
-        <th>Serial Number</th>
-        <td>{{ gear?.serialNumber }}</td>
-      </tr>
-      <tr>
-        <th>Fabricante</th>
-        <td>{{ gear?.manufacturer }}</td>
-      </tr>
-      <tr>
-        <th>Año de Fabricación</th>
-        <td>{{ gear?.manufacturingYear }}</td>
-      </tr>
-      <tr>
-        <th>Peso</th>
-        <td>{{ gear?.weight }}</td>
-      </tr>
-      <tr>
-        <th>Resolución de Pantalla</th>
-        <td>{{ gear?.screenResolution }}</td>
-      </tr>
-
-      <tr>
-        <th>Suministro Eléctrico</th>
-        <td>{{ gear?.powerSupply }}</td>
-      </tr>
-      <tr>
-        <th>Conectividad</th>
-        <td>{{ gear?.connectivity }}</td>
-      </tr>
-      <tr>
-        <th>Garantía</th>
-        <td>{{ gear?.warranty }}</td>
-      </tr>
-    </table>
-  </div>
+  <h2>Detalles del Equipo</h2>
+  <table class="table">
+    <tr>
+      <th>Nombre</th>
+      <td>{{ gear?.name }}</td>
+    </tr>
+    <tr>
+      <th>Modelo</th>
+      <td>{{ gear?.deviceModel }}</td>
+    </tr>
+    <tr>
+      <th>Serial Number</th>
+      <td>{{ gear?.serialNumber }}</td>
+    </tr>
+    <tr>
+      <th>Fabricante</th>
+      <td>{{ gear?.manufacturer }}</td>
+    </tr>
+    <tr>
+      <th>Año de Fabricación</th>
+      <td>{{ gear?.manufacturingYear }}</td>
+    </tr>
+    <tr>
+      <th>Peso</th>
+      <td>{{ gear?.weight }} kg</td>
+    </tr>
+    <tr>
+      <th>Resolución de Pantalla</th>
+      <td>{{ gear?.screenResolution }}</td>
+    </tr>
+    <tr>
+      <th>Suministro Eléctrico</th>
+      <td>{{ gear?.powerSupply }}</td>
+    </tr>
+    <tr>
+      <th>Conectividad</th>
+      <td>{{ gear?.connectivity }}</td>
+    </tr>
+    <tr>
+      <th>Garantía</th>
+      <td>{{ gear?.warranty }}</td>
+    </tr>
+    <tr>
+      <th>Fecha de Inicio</th>
+      <td>{{ gear?.startingDate | date: 'dd/MM/yyyy' }}</td>
+    </tr>
+    <tr>
+      <th>Responsable</th>
+      <td>{{ gear?.responsible }}</td>
+    </tr>
+    <tr>
+      <th>Descripción de Mantenimiento</th>
+      <td>{{ gear?.descriptionMaintenance }}</td>
+    </tr>
+    <tr>
+      <th>Data Extra</th>
+      <td>{{ gear?.extraData}}</td>
+    </tr>
+    <tr *ngIf="gear?.photo">
+      <th>Foto</th>
+      <td><img [src]="'http://localhost:3000/images/uploads/'+gear?.photo" alt="Foto del equipo" class="gear-photo"></td>
+    </tr>
+  </table>
+</div>

@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, Input } from '@angular/core';
+import {AfterViewInit, Component, Input, OnInit} from '@angular/core';
 import { Gear } from '../../../interfaces/models/gear.model';
 
 @Component({
@@ -8,7 +8,7 @@ import { Gear } from '../../../interfaces/models/gear.model';
   templateUrl: './gear-view-card.component.html',
   styleUrl: './gear-view-card.component.scss'
 })
-export class GearViewCardComponent implements AfterViewInit {
+export class GearViewCardComponent implements OnInit {
 
   @Input() gear: Gear | null = null;
   imageUrl : string
@@ -17,7 +17,7 @@ export class GearViewCardComponent implements AfterViewInit {
     this.imageUrl = ""
   }
 
-  ngAfterViewInit(): void {
-    this.imageUrl = 'http://localhost:3000/gear/images/' + this.gear?.photo
+  ngOnInit(): void {
+    this.imageUrl = 'http://localhost:3000/images/uploads/' + this.gear?.photo
   }
 }

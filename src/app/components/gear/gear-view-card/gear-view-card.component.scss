@@ -49,3 +49,23 @@
     font-size: 0.95em;
     color: #555;
 }
+/* src/app/components/gear/gear-card/gear-card.component.css */
+.gear-card-footer {
+  padding: 16px;
+  text-align: center;
+}
+
+.gear-detail-btn {
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1em;
+  transition: background-color 0.3s ease;
+}
+
+.gear-detail-btn:hover {
+  background-color: #45a049;
+}

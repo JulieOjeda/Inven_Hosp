@@ -18,7 +18,9 @@ export class GearFormComponent implements OnInit{
     title: string,
     form: FormGroup
   }[]
-
+  selectedFile: File | null = null;
+  imagePreview: string | ArrayBuffer | null = null;
+  areas = ["Emergencias" , "Quirofano" , "Pediatria"]
   // Configuración para el Slick Carousel
   customOptions: OwlOptions = {
     loop: true,
@@ -45,6 +47,8 @@ export class GearFormComponent implements OnInit{
   public technicalInfo: FormGroup
   public lifeInformation: FormGroup
   public additionalInfo: FormGroup
+  label = new Map<string, string>();
+  labels = ["nombre", "modelo de dispositivo", "numero de serie", "area", "fabricante", "descripcion", "resolucion", "fuente de energia", "tamaño", "conectivida", "año de fabricacion", "garantia", "datos extras", "Imagen","fecha de puesta en marcha", "descripcion para mantenimiento", "responsable" ]
   constructor(private _gearService: GearApiService,
     private _router:Router
   ) {
@@ -78,11 +82,26 @@ export class GearFormComponent implements OnInit{
     })
 
     this.steps = [
-      { title: 'General Information', form: this.generalInfo },
-      { title: 'Technical Information', form: this.technicalInfo },
-      { title: 'Additional Information', form: this.additionalInfo },
-      { title: 'Life Information', form: this.lifeInformation },
+      { title: 'Informacion General', form: this.generalInfo },
+      { title: 'Informacion Tecnica', form: this.technicalInfo },
+      { title: 'Informacion Adicional', form: this.additionalInfo },
+      { title: 'Hoja de Vida', form: this.lifeInformation },
     ];
+    const data: Gear = {
+      ...this.generalInfo.value,
+      ...this.technicalInfo.value,
+      ...this.additionalInfo.value,
+      ...this.lifeInformation.value
+    };
+    const gearKeys = Object.keys(data) as (keyof Gear)[];
+    gearKeys.forEach(key => {
+      this.label.set(key, ``);
+    });
+    let index = 0;
+    this.label.forEach((value, key) => {
+      this.label.set(key, this.labels[index])
+      index++;
+    });
   }
 
   ngOnInit(): void {
@@ -99,7 +118,7 @@ export class GearFormComponent implements OnInit{
         ...this.lifeInformation.value
       };
       this._gearService.createGear(data).subscribe((gear: Gear)=>{
-        this._router.navigate(['/gear/'+ gear.serialNumber], {state: {gear: gear}});
+        this._router.navigate(['board/gear/'+ gear._id]);
       })
     } else {
       console.log('Formulario no válido');
@@ -110,14 +129,29 @@ export class GearFormComponent implements OnInit{
     return this.lifeInformation.valid && this.additionalInfo.valid && this.technicalInfo.valid && this.generalInfo.valid
   }
 
-  onImageSelected(event: Event): void {
+  onFileSelected(event: Event) {
     const fileInput = event.target as HTMLInputElement;
-    const file = fileInput.files?.[0];
+    if (fileInput.files && fileInput.files.length > 0) {
+      const file = fileInput.files[0];
 
-    if (file) {
-      console.log("Imagen seleccionada: ", file.name);
+      // Previsualización de la imagen
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.imagePreview = reader.result as string;
+      };
+      reader.readAsDataURL(file);
+
+      // Crear FormData para enviar al backend
+      const formData = new FormData();
+      formData.append('file', file);
+
+      // Enviar la imagen al backend
+      this._gearService.sendImage(formData).subscribe( data => {
+        this.additionalInfo.get('photo')?.setValue(data.file.filename); // Asignar el ID al formulario
+      })
     }
   }
+
 
   getControlType(controlName: any): string {
     switch (controlName) {
@@ -147,5 +181,9 @@ export class GearFormComponent implements OnInit{
     if (this.currentStep < this.steps.length - 1) {
       this.currentStep++;
     }
+  }
+
+  getLabel(controlName: any) : string | undefined {
+    return this.label.get(controlName)
   }
 }

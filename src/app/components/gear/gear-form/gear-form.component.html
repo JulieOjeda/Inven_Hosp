@@ -7,18 +7,32 @@
           <form [formGroup]="step.form">
             <div class="gear-form-grid">
               <div *ngFor="let controlName of getControls(step.form)" class="form-row">
-                <label class="form-label" [for]="controlName">{{ controlName | titlecase }}</label>
-                <mat-form-field appearance="outline" class="form-field">
-                  <input
-                    matInput
-                    [formControlName]="controlName"
-                    [id]="controlName"
-                    [type]="getControlType(controlName)"
-                  />
+                <label class="form-label" [for]="controlName">{{ getLabel(controlName) | titlecase }}</label>
+
+                <!-- Selector de área -->
+                <mat-form-field *ngIf="controlName === 'areaAssigned'" appearance="outline" class="form-field">
+                  <mat-select [formControlName]="controlName">
+                    <mat-option *ngFor="let option of areas" [value]="option">{{ option }}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+
+                <!-- Inputs normales -->
+                <mat-form-field *ngIf="controlName !== 'areaAssigned' && controlName !== 'photo'" appearance="outline" class="form-field">
+                  <input matInput [formControlName]="controlName" [id]="controlName" [type]="getControlType(controlName)" />
                   <mat-error *ngIf="step.form.get(controlName)?.invalid && step.form.get(controlName)?.touched">
                     Campo inválido
                   </mat-error>
                 </mat-form-field>
+
+                <!-- Input de imagen SIN mat-form-field -->
+                <div *ngIf="controlName === 'photo'" class="photo-upload">
+                  <input type="file" #fileInput hidden (change)="onFileSelected($event)" accept="image/*" />
+                  <button mat-raised-button color="primary" (click)="fileInput.click()">📸 Subir Foto</button>
+                  <div class="image-preview" *ngIf="imagePreview">
+                    <img [src]="imagePreview" alt="Previsualización de imagen" class="preview-image" />
+                  </div>
+                </div>
+
               </div>
             </div>
           </form>
@@ -26,6 +40,7 @@
       </ng-template>
     </ng-container>
   </owl-carousel-o>
+
   <button mat-raised-button color="primary" (click)="onSubmit()">
     Enviar
   </button>

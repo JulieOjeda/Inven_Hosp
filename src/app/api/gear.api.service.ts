@@ -16,11 +16,15 @@ export class GearApiService {
     return this.http.get<Gear[]>(this.apiUrl);
   }
 
-  getGearById(id: number): Observable<Gear> {
+  getGearById(id: string): Observable<Gear> {
     return this.http.get<Gear>(`${this.apiUrl}/${id}`);
   }
 
   createGear(gear: Gear): Observable<Gear>{
     return this.http.post<Gear>(`${this.apiUrl}`, gear)
+  }
+
+  sendImage(data : FormData): Observable<any>{
+   return this.http.post<any>(`http://localhost:3000/images`, data)
   }
 }

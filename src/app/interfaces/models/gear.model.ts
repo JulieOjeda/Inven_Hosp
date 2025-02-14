@@ -1,4 +1,5 @@
 export interface Gear {
+  _id: string
   name: string;
   deviceModel: string;
   serialNumber: string;

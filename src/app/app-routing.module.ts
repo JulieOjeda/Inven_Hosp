@@ -14,25 +14,25 @@ export const routes: Routes = [
     path: '',
     component: HomeComponent,  // Usa el layout con sidebar y navbar
     children: [
-      { 
-        path: 'board/gear', 
+      {
+        path: 'board/gear',
         component : GearBoardComponent,
       },
-      { 
-        path: 'board/gear/register', 
+      {
+        path: 'board/gear/register',
         component : GearFormComponent,
       },
-      { 
-        path: 'board/areas', 
+      {
+        path: 'board/areas',
         component : AreasBoardComponent,
       },
-      { 
-        path: 'board/report', 
+      {
+        path: 'board/report',
         component : ReportBoardComponent,
       },
-      { 
-        path: 'gear/:id', 
-        component : GearViewComponent 
+      {
+        path: 'board/gear/:id',
+        component : GearViewComponent
       }
     ]
   },

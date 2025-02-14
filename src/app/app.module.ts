@@ -31,6 +31,8 @@ import {MatIcon, MatIconModule} from '@angular/material/icon';
 import {MatInputModule} from '@angular/material/input';
 import {MatToolbar} from '@angular/material/toolbar';
 import {MatButton, MatButtonModule} from '@angular/material/button';
+import {MatOption} from "@angular/material/autocomplete";
+import {MatSelect} from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -66,7 +68,9 @@ import {MatButton, MatButtonModule} from '@angular/material/button';
     MatIconModule,
     MatInputModule,
     MatToolbar,
-    MatButtonModule
+    MatButtonModule,
+    MatOption,
+    MatSelect
   ],
   providers: [provideHttpClient(), provideAnimationsAsync()],
   bootstrap: [AppComponent]
