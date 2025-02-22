@@ -1,9 +1,18 @@
 <div class="home-container">
-    <app-header class="div1"></app-header>
-    <app-sidebar class="div2"></app-sidebar>
-    <div class="home-content">
-        <router-outlet> </router-outlet>
-    </div>
-    
-    <app-footer class="div3"> </app-footer>
+  <app-header class="div1"></app-header>
+
+  <!-- Sidebar: Escucha el evento toggleSidebar -->
+  <app-sidebar
+    [ngClass]="{'sidebar-expanded': isSidebarExpanded, 'sidebar-collapsed': !isSidebarExpanded}"
+    (toggleSidebar)="toggleSidebar()"> <!-- Maneja el evento -->
+  </app-sidebar>
+
+  <!-- Contenido con clase dinámica -->
+  <div class="home-content"
+       [ngClass]="{'content-expanded': isSidebarExpanded, 'content-collapsed': !isSidebarExpanded}">
+    <router-outlet></router-outlet>
+  </div>
+
+  <app-footer class="div3"></app-footer>
 </div>
+<app-notification></app-notification>

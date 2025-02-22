@@ -1,0 +1,145 @@
+:host {
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.report-task-container {
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  background-color: #ffffff;
+  transition: box-shadow 0.3s ease;
+
+  &:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+}
+
+.report-task-resume {
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: #333333;
+  margin-bottom: 0.5rem;
+}
+
+.read-more-button {
+  background-color: transparent;
+  border: none;
+  color: #007bff;
+  cursor: pointer;
+  font-size: 0.875rem;
+  padding: 0;
+  margin-left: 0.5rem;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.report-task-details {
+  font-size: 0.875rem;
+  color: #666666;
+  margin-bottom: 0.5rem;
+
+  .detail-label {
+    font-weight: 500;
+    color: #444444;
+  }
+}
+
+.report-task-status {
+  font-size: 0.875rem;
+  font-weight: 500;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  display: inline-block;
+
+  &.status-pending {
+    background-color: #fff3cd;
+    color: #856404;
+  }
+
+  &.status-completed {
+    background-color: #d4edda;
+    color: #155724;
+  }
+
+  &.status-expired {
+    background-color: #f8d7da;
+    color: #721c24;
+  }
+}
+
+.report-task-dates {
+  font-size: 0.75rem;
+  color: #888888;
+  margin-top: 0.5rem;
+
+  .date-label {
+    font-weight: 500;
+    color: #666666;
+  }
+}
+
+/* Estilos del modal personalizado */
+.custom-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  width: 400px;
+  max-width: 90%;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.modal-header h3 {
+  margin: 0;
+}
+
+.close-button {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.modal-body {
+  margin-bottom: 20px;
+}
+
+textarea {
+  width: 100%;
+  height: 100px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+}
+
+.edit-icon {
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.modal-footer {
+  text-align: right;
+}

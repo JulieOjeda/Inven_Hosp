@@ -1,0 +1,27 @@
+.areas-board-container{
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+}
+.card-list {
+  display: flex;
+  flex-direction: column; /* Una sola columna */
+  gap: 16px; /* Espacio entre las tarjetas */
+  width: 90%;
+}
+
+/* Alternar la alineación de las tarjetas */
+app-area-card-view:nth-child(odd) {
+  align-self: flex-start; /* Alinea a la izquierda */
+}
+
+app-area-card-view:nth-child(even) {
+  align-self: flex-end; /* Alinea a la derecha */
+}
+
+/* Estilos adicionales para las tarjetas */
+app-area-card-view {
+  width: 80%; /* Ancho de las tarjetas (ajusta según necesites) */
+  max-width: 400px; /* Ancho máximo de cada tarjeta */
+}

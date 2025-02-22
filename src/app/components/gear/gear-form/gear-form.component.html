@@ -33,7 +33,7 @@
 
 
                 <!-- Inputs normales -->
-                <mat-form-field *ngIf="controlName !== 'areaAssigned' && controlName !== 'photo'" appearance="outline" class="form-field">
+                <mat-form-field *ngIf="controlName !== 'areaAssigned' && controlName !== 'photo' && controlName !=='frequencyMaintenance'" appearance="outline" class="form-field">
                   <input matInput [formControlName]="controlName" [id]="controlName" [type]="getControlType(controlName)" />
                   <mat-error *ngIf="step.form.get(controlName)?.invalid && step.form.get(controlName)?.touched">
                     Campo inválido
@@ -48,6 +48,22 @@
                     <img [src]="imagePreview" alt="Previsualización de imagen" class="preview-image" />
                   </div>
                 </div>
+
+                <!-- Input de frecuencia de mantenimiento -->
+                <mat-form-field *ngIf="controlName === 'frequencyMaintenance'" appearance="outline" class="form-field">
+                  <input matInput [formControlName]="controlName" [id]="controlName" type="number" />
+                  <mat-error *ngIf="step.form.get(controlName)?.invalid && step.form.get(controlName)?.touched">
+                    La frecuencia debe ser un número válido
+                  </mat-error>
+                </mat-form-field>
+
+                <!-- Selector de unidad de frecuencia (no vinculado al formulario) -->
+                <mat-form-field *ngIf="controlName === 'frequencyMaintenance'" appearance="outline" class="form-field">
+                  <mat-label>Unidad de Frecuencia</mat-label>
+                  <mat-select (selectionChange)="onFrequencyUnitChange($event.value)">
+                    <mat-option *ngFor="let unit of frequencyUnits" [value]="unit.value">{{ unit.label }}</mat-option>
+                  </mat-select>
+                </mat-form-field>
 
               </div>
             </div>

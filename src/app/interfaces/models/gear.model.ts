@@ -20,4 +20,5 @@ export interface Gear {
   startingDate: number;
   descriptionMaintenance: string;
   responsible: string;
+  frequencyMaintenance : number
 }

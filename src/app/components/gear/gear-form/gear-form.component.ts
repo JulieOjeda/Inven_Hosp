@@ -15,6 +15,7 @@ import {AreaApiService} from '../../../api/area.api.service';
   styleUrl: './gear-form.component.scss'
 })
 export class GearFormComponent implements OnInit{
+  selectedFrequencyUnit: string = 'day';
   currentStep = 0;
   steps : {
     title: string,
@@ -45,12 +46,17 @@ export class GearFormComponent implements OnInit{
     },
     nav: true  // Muestra los botones de navegación
   };
+  frequencyUnits = [
+    { value: 'day', label: 'Día', daysValue: 1 },
+    { value: 'month', label: 'Mes', daysValue: 31 },
+    { value: 'year', label: 'Año', daysValue: 365 }
+  ];
   public generalInfo : FormGroup
   public technicalInfo: FormGroup
   public lifeInformation: FormGroup
   public additionalInfo: FormGroup
   label = new Map<string, string>();
-  labels = ["nombre", "modelo de dispositivo", "numero de serie", "area", "fabricante", "descripcion", "resolucion", "fuente de energia", "tamaño", "conectivida", "año de fabricacion", "garantia", "datos extras", "Imagen","fecha de puesta en marcha", "descripcion para mantenimiento", "responsable" ]
+  labels = ["nombre", "modelo de dispositivo", "numero de serie", "area", "fabricante", "descripcion", "resolucion", "fuente de energia", "tamaño", "conectivida", "año de fabricacion", "garantia", "datos extras", "Imagen","fecha de puesta en marcha", "descripcion para mantenimiento", "responsable", "frecuencia de mantenimiento" ]
   selectedArea: string = "";
   constructor(private _gearService: GearApiService,
     private _router:Router,
@@ -84,6 +90,7 @@ export class GearFormComponent implements OnInit{
       startingDate: new FormControl('', [Validators.required, Validators.min(1900), Validators.max(new Date().getFullYear())]),
       descriptionMaintenance : new FormControl('', [Validators.required, Validators.maxLength(100)]),
       responsible : new FormControl('', [Validators.required, Validators.maxLength(50)]),
+      frequencyMaintenance: new FormControl('', [Validators.required, Validators.min(1)]),
     })
 
     this.steps = [
@@ -118,12 +125,18 @@ export class GearFormComponent implements OnInit{
 
   onSubmit(): void {
     if (this.isFormValid()) {
-      const data = {
+      const data: Gear = {
         ...this.generalInfo.value,
         ...this.technicalInfo.value,
         ...this.additionalInfo.value,
         ...this.lifeInformation.value
       };
+      let multiplier = this.frequencyUnits.find(
+        (unit)=>
+        {unit.value === this.selectedFrequencyUnit}
+      )?.daysValue || 1
+      console.log(data.frequencyMaintenance)
+      data.frequencyMaintenance = data.frequencyMaintenance  * multiplier
       this._gearService.createGear(data).subscribe((gear: Gear)=>{
         this._router.navigate(['board/gear/'+ gear._id]);
       })
@@ -202,10 +215,12 @@ export class GearFormComponent implements OnInit{
     const inputElement = event.target as HTMLInputElement;
     const newAreaName = inputElement.value.trim();
 
-    let newArea = {
+    let newArea: Areas = {
       itemsCount : 0,
       createdAt : new Date(),
-      name : newAreaName
+      name : newAreaName,
+      description : "",
+      imageId : ""
     };
     if (newArea && !this.areas.map( area => {return area.name} ).includes(newAreaName)) {
       this.areaApiService.createArea( newArea).subscribe( (response) =>{
@@ -215,5 +230,10 @@ export class GearFormComponent implements OnInit{
     }
 
     inputElement.value = ''; // Limpiar input
+  }
+
+  onFrequencyUnitChange(unit: string) {
+    this.selectedFrequencyUnit = unit;
+    console.log('Unidad de tiempo seleccionada:', unit);
   }
 }

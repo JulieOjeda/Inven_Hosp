@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { GearViewComponent } from './components/gear/gear-view/gear-view.component';
 import { GearViewCardComponent } from './components/gear/gear-view-card/gear-view-card.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { GearFormComponent } from './components/gear/gear-form/gear-form.component';
 import { HttpClient, provideHttpClient } from '@angular/common/http';
 import { HomeComponent } from './pages/home/home.component';
@@ -33,6 +33,10 @@ import {MatToolbar} from '@angular/material/toolbar';
 import {MatButton, MatButtonModule} from '@angular/material/button';
 import {MatOption} from "@angular/material/autocomplete";
 import {MatSelect} from '@angular/material/select';
+import { AreaCardViewComponent } from './components/areas/area-card-view/area-card-view.component';
+import { ReportTaskComponent } from './components/report/report-task/report-task.component';
+import {DragDropModule} from '@angular/cdk/drag-drop';
+import { NotificationComponent } from './shared/components/notification/notification.component';
 
 @NgModule({
   declarations: [
@@ -52,10 +56,14 @@ import {MatSelect} from '@angular/material/select';
     AreasBoardComponent,
     ReportBoardComponent,
     FallbacksrcPipe,
-    CamelCaseToNormalPipe
+    CamelCaseToNormalPipe,
+    AreaCardViewComponent,
+    ReportTaskComponent,
+    NotificationComponent
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     AppRoutingModule,
     ReactiveFormsModule,
     MatStep,
@@ -70,7 +78,8 @@ import {MatSelect} from '@angular/material/select';
     MatToolbar,
     MatButtonModule,
     MatOption,
-    MatSelect
+    MatSelect,
+    DragDropModule
   ],
   providers: [provideHttpClient(), provideAnimationsAsync()],
   bootstrap: [AppComponent]

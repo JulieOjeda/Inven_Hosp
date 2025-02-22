@@ -1,0 +1,19 @@
+.report-board {
+  display: flex;
+  gap: 16px;
+  padding: 16px;
+}
+
+.column {
+  flex: 1;
+  background-color: #f5f5f5;
+  border-radius: 8px;
+  padding: 16px;
+  min-height: 300px;
+}
+
+h3 {
+  margin-top: 0;
+  font-size: 18px;
+  color: #333;
+}

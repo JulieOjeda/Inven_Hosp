@@ -6,7 +6,7 @@ import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-gear-list',
   standalone: false,
-  
+
   templateUrl: './gear-list.component.html',
   styleUrl: './gear-list.component.scss'
 })
@@ -17,7 +17,7 @@ export class GearListComponent {
   constructor(private gearService: GearService) { }
 
   ngOnInit(): void {
-    this.gearsListSubscription = this.gearService.list$.subscribe(gears => {
+    this.gearsListSubscription = this.gearService.list$.subscribe((gears: Gear[]) => {
       this.gears = gears;
     });
   }

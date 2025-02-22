@@ -1,0 +1,126 @@
+.card {
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 12px; /* Reducimos el padding */
+  margin: 0 auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  max-width: 600px; /* Ancho máximo de la tarjeta */
+  width: 100%;
+  font-family: Arial, sans-serif;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.card-header {
+  text-align: center;
+  margin-bottom: 12px; /* Reducimos el margen */
+}
+
+.card-header h2 {
+  margin: 0;
+  font-size: 1.5em;
+  color: #333333;
+}
+
+.card-content {
+  display: flex;
+  gap: 12px; /* Reducimos el espacio entre la imagen y el contenido */
+}
+
+.card-image {
+  flex: 1; /* La imagen ocupa 1 parte del espacio */
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  max-width: 150px; /* Limitamos el ancho de la imagen */
+}
+
+.card-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 8px;
+}
+
+.image-upload-input {
+  display: none; /* Oculta el input de archivo */
+}
+
+.edit-icon {
+  position: absolute;
+  top: 8px; /* Ajustamos la posición */
+  right: 8px; /* Ajustamos la posición */
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+  padding: 6px; /* Reducimos el padding */
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.2s ease;
+}
+
+.edit-icon:hover {
+  background-color: rgba(255, 255, 255, 1);
+}
+
+.edit-icon span {
+  font-size: 16px; /* Reducimos el tamaño del ícono */
+  color: #333;
+}
+
+.card-body {
+  flex: 2; /* El contenido ocupa 2 partes del espacio */
+  display: flex;
+  flex-direction: column;
+  gap: 8px; /* Reducimos el espacio entre elementos */
+}
+
+.description-container {
+  position: relative;
+}
+
+.description-container p {
+  margin: 0;
+  color: #666666;
+  font-size: 14px;
+  line-height: 1.4; /* Ajustamos el interlineado */
+}
+
+.placeholder {
+  color: #999999;
+  font-style: italic;
+}
+
+.description-input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s ease;
+  resize: none; /* Desactiva el resize manual */
+  overflow: hidden; /* Oculta el scrollbar */
+  min-height: 40px; /* Altura mínima */
+}
+
+.description-input:focus {
+  border-color: #007bff;
+}
+
+.card-body p {
+  margin: 0;
+  color: #666666;
+  font-size: 14px;
+}
+
+.card-body p strong {
+  color: #333333;
+}

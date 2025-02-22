@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Gear } from '../interfaces/models/gear.model';
+import {Notification} from '../shared/components/notification/notification.component';
 
 @Injectable({
   providedIn: 'root',
@@ -26,5 +27,9 @@ export class GearApiService {
 
   sendImage(data : FormData): Observable<any>{
    return this.http.post<any>(`http://localhost:3000/images`, data)
+  }
+
+  getGearMaintenanceNotifications():  Observable<Notification[]>{
+    return this.http.get<Notification[]>(this.apiUrl+"/notifications");
   }
 }

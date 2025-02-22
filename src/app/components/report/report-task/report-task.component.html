@@ -1,0 +1,54 @@
+<div class="report-task-container">
+  <!-- Resumen de la tarea -->
+  <div class="report-task-resume">
+    {{ (reportTask.resume | slice:0:50) }}{{ reportTask.resume.length > 50 ? '...' : '' }}
+    <button class="read-more-button" (click)="openResumeModal()">Leer más</button>
+  </div>
+
+  <!-- Detalles del equipo (Gear) -->
+  <div class="report-task-details">
+    <app-gear-view-card *ngIf="gear" [gear]="gear"></app-gear-view-card>
+  </div>
+
+  <!-- Estado de la tarea -->
+  <div class="report-task-status" [ngClass]="getStatusClass(reportTask.status)">
+    {{ reportTask.status }}
+  </div>
+
+  <!-- Fechas de creación y resolución -->
+  <div class="report-task-dates">
+    <div>
+      <span class="date-label">Creado:</span> {{ reportTask.createdAt | date:'medium' }}
+    </div>
+    <div *ngIf="reportTask.resolvedAt">
+      <span class="date-label">Resuelto:</span> {{ reportTask.resolvedAt | date:'medium' }}
+    </div>
+  </div>
+</div>
+
+<!-- Modal personalizado -->
+<div class="custom-modal" *ngIf="isModalOpen">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h3>Resumen Completo</h3>
+      <button class="close-button" (click)="closeResumeModal()">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div *ngIf="isEditable; else readOnlyResume">
+        <textarea
+          #resumeInput
+          [(ngModel)]="reportTask.resume"
+          (keydown.enter)="saveResume(resumeInput.value)"
+          placeholder="Escribe el resumen aquí..."
+        ></textarea>
+        <span class="edit-icon">✏️</span>
+      </div>
+      <ng-template #readOnlyResume>
+        {{ reportTask.resume }}
+      </ng-template>
+    </div>
+    <div class="modal-footer">
+      <button class="close-button" (click)="closeResumeModal()">Cerrar</button>
+    </div>
+  </div>
+</div>

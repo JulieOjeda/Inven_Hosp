@@ -1,5 +1,5 @@
 <div class="sidebar-container" [class.minimized]="isMinimized">
-  <div class="toggle-button" (click)="toggleSidebar()">
+  <div class="toggle-button" (click)="toggle()">
     <mat-icon>{{ isMinimized ? 'menu_open' : 'menu' }}</mat-icon>
   </div>
 
@@ -15,7 +15,7 @@
           <mat-icon>business</mat-icon>
           <span *ngIf="!isMinimized">Areas</span>
         </li>
-        <li routerLink="board/gear" routerLinkActive="active">
+        <li [routerLink]="['/board/gear']" [queryParams]="{ filter: 'all' }" routerLinkActive="active">
           <mat-icon>settings</mat-icon>
           <span *ngIf="!isMinimized">Equipamiento</span>
         </li>

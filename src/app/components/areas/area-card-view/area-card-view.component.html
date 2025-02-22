@@ -1,0 +1,56 @@
+<div class="card" (click)="goToItemsEvent()">
+  <div class="card-header">
+    <h2>{{ area.name }}</h2>
+  </div>
+  <div class="card-content">
+    <!-- Sección de la imagen -->
+    <div class="card-image">
+      <img
+        [src]="imagePreview || defaultImage"
+        alt="{{ area.name }}"
+        (error)="onImageError($event)"
+      />
+      <input
+        type="file"
+        id="imageUpload"
+        class="image-upload-input"
+        (change)="handleImageUpload($event)"
+        accept="image/*"
+      />
+      <div class="edit-icon" (click)="triggerImageUpload($event)">
+        <span class="material-icons">edit</span>
+      </div>
+    </div>
+
+    <!-- Sección del cuerpo de la tarjeta -->
+    <div class="card-body">
+      <!-- Descripción editable -->
+      <div class="description-container">
+        <div *ngIf="!isEditingDescription; else editDescriptionTemplate">
+          <p *ngIf="area.description; else emptyDescription">
+            {{ area.description }}
+          </p>
+          <ng-template #emptyDescription>
+            <p class="placeholder">Agrega una descripción, se ve vacío.</p>
+          </ng-template>
+        </div>
+        <ng-template #editDescriptionTemplate>
+          <textarea
+            class="description-input"
+            [value]="tempDescription"
+            (input)="onDescriptionInput($event)"
+            (keyup.enter)="saveDescription()"
+            (keyup.escape)="saveDescription()"
+            (blur)="saveDescription()"
+            placeholder="Escribe una descripción"
+          ></textarea>
+        </ng-template>
+        <!-- Ícono para editar la descripción -->
+        <div class="edit-icon" (click)="startEditingDescription($event)">
+          <span class="material-icons">edit</span>
+        </div>
+      </div>
+      <p><strong>Items Count:</strong> {{ area.itemsCount }}</p>
+    </div>
+  </div>
+</div>

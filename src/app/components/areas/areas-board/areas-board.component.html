@@ -1,1 +1,13 @@
-<p>areas-board works!</p>
+<div class="areas-board-container">
+  <div class="card-list">
+    <ng-container *ngIf="areas.length > 0; else noAreasTemplate">
+      <app-area-card-view *ngFor="let area of areas" [area]="area"></app-area-card-view>
+    </ng-container>
+
+    <ng-template #noAreasTemplate>
+      <div class="no-areas-message">
+        <p>No hay áreas disponibles en este momento.</p>
+      </div>
+    </ng-template>
+  </div>
+</div>

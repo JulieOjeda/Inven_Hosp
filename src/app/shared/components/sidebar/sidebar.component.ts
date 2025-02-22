@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import { ClientService } from '../../services/client.service';
 import { ClientModel } from '../../interfaces/models/client.model';
 import { environment } from '../../../../environments/environment';
@@ -12,6 +12,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrl: './sidebar.component.scss'
 })
 export class SidebarComponent implements OnInit{
+  @Output() toggleSidebar = new EventEmitter<void>(); // Emite el evento de toggle
   client : ClientModel
   logoUrl : string
   isMinimized = false;
@@ -32,7 +33,8 @@ export class SidebarComponent implements OnInit{
     this.router.navigate([`board/${to}`], {relativeTo: this.activatedRoute})
   }
 
-  toggleSidebar() {
+  toggle() {
     this.isMinimized = !this.isMinimized;
+    this.toggleSidebar.emit();
   }
 }

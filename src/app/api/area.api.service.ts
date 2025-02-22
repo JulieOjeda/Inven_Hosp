@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Areas } from '../interfaces/models/areas.model';
+import {environment} from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -20,11 +21,15 @@ export class AreaApiService {
     return this.http.get<Areas>(`${this.apiUrl}/${id}`);
   }
 
-  createArea(gear: Areas): Observable<Areas>{
-    return this.http.post<Areas>(`${this.apiUrl}`, gear)
+  createArea(area: Areas): Observable<Areas>{
+    return this.http.post<Areas>(`${this.apiUrl}`, area)
   }
 
   sendImage(data : FormData): Observable<any>{
    return this.http.post<any>(`http://localhost:3000/images`, data)
+  }
+
+  updateArea(area: Areas): Observable<any> {
+    return this.http.put<any>(`${environment.apiUrl}/area`, area)
   }
 }
