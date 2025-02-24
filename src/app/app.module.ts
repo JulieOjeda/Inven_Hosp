@@ -7,7 +7,7 @@ import { GearViewComponent } from './components/gear/gear-view/gear-view.compone
 import { GearViewCardComponent } from './components/gear/gear-view-card/gear-view-card.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { GearFormComponent } from './components/gear/gear-form/gear-form.component';
-import { HttpClient, provideHttpClient } from '@angular/common/http';
+import {HttpClient, provideHttpClient, withInterceptors} from '@angular/common/http';
 import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
 import { LandingComponent } from './pages/landing/landing.component';
@@ -37,6 +37,9 @@ import { AreaCardViewComponent } from './components/areas/area-card-view/area-ca
 import { ReportTaskComponent } from './components/report/report-task/report-task.component';
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import { NotificationComponent } from './shared/components/notification/notification.component';
+import {MatCard, MatCardContent, MatCardHeader, MatCardTitle} from '@angular/material/card';
+import {authInterceptor} from './shared/utils/interceptor/auth.interceptor';
+import {authGuard} from './shared/guard/auth.guard';
 
 @NgModule({
   declarations: [
@@ -79,9 +82,15 @@ import { NotificationComponent } from './shared/components/notification/notifica
     MatButtonModule,
     MatOption,
     MatSelect,
+    MatCard,
+    MatCardContent,
+    MatCardTitle,
+    MatCardHeader,
     DragDropModule
   ],
-  providers: [provideHttpClient(), provideAnimationsAsync()],
+  providers: [provideHttpClient(
+    withInterceptors([authInterceptor])
+  ), provideAnimationsAsync()],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,0 +1,167 @@
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+@keyframes ripple {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.login-modal {
+  display: flex;
+  width: 80%;
+  max-width: 1000px;
+  background-color: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+}
+
+.welcome-section {
+  flex: 1;
+  padding: 2rem;
+  background-color: #f0f5ff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+  h1, h2 {
+    color: #2c5282;
+  }
+}
+
+.logo {
+  margin: 2rem 0;
+}
+
+.simeq-logo {
+  width: 100px;
+  height: 100px;
+  animation: float 6s ease-in-out infinite;
+}
+
+.description {
+  max-width: 80%;
+  line-height: 1.6;
+  color: #2c5282;
+  font-size: 0.9rem;
+}
+
+.login-section {
+  flex: 1;
+  background: linear-gradient(135deg, #004d99 0%, #003366 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  padding: 2rem;
+
+  h2 {
+    color: white;
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+}
+
+.login-form {
+  width: 100%;
+  max-width: 300px;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
+.form-control {
+  width: 100%;
+  padding: 0.75rem 0;
+  border: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  background-color: transparent;
+  color: white;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+
+  &::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  &:focus {
+    outline: none;
+    border-bottom-color: #90cdf4;
+  }
+}
+
+.login-button {
+  width: 100%;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 4px;
+  background-color: #90cdf4;
+  color: #2c5282;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.1s ease;
+  margin-top: 1rem;
+  position: relative;
+  overflow: hidden;
+
+  &:hover {
+    background-color: #63b3ed;
+  }
+
+  &:active {
+    transform: scale(0.98);
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 5px;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.5);
+    opacity: 0;
+    border-radius: 100%;
+    transform: scale(1);
+    transform-origin: 50% 50%;
+  }
+
+  &:focus:not(:active)::after {
+    animation: ripple 0.5s ease-out;
+  }
+}
+
+@media (max-width: 768px) {
+  .login-modal {
+    flex-direction: column;
+    width: 90%;
+  }
+
+  .welcome-section, .login-section {
+    padding: 1.5rem;
+  }
+}

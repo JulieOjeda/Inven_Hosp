@@ -1,1 +1,47 @@
-<p>login works!</p>
+<div class="login-container">
+  <div class="login-modal" [@fadeInGrow]="showAnimations ? 'in' : 'void'">
+    <!-- Left Section -->
+    <div class="welcome-section">
+      <h2 [@fadeInSlideUp]="showAnimations ? 'in' : 'void'">Bienvenido a</h2>
+      <div class="logo" [@fadeInSlideUp]="showAnimations ? 'in' : 'void'">
+        <img src="/assets/simeq-logo.svg" alt="SIMEQ Logo" class="simeq-logo floating">
+        <h1>SIMEQ</h1>
+      </div>
+      <p class="description" [@fadeInSlideUp]="showAnimations ? 'in' : 'void'">
+        Sistema de Gestión de Equipos Médicos optimiza el control y mantenimiento de los
+        equipos hospitalarios. Registra, supervisa y recibe alertas para garantizar el buen
+        funcionamiento de los dispositivos en cada área médica.
+      </p>
+    </div>
+
+    <!-- Right Section -->
+    <div class="login-section">
+      <div class="login-form">
+        <h2 [@fadeInSlideUp]="showAnimations ? 'in' : 'void'">Login</h2>
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+          <div class="form-group" [@fadeInSlideUp]="showAnimations ? 'in' : 'void'">
+            <input
+              type="text"
+              id="username"
+              formControlName="username"
+              class="form-control"
+              placeholder="Usuario">
+          </div>
+
+          <div class="form-group" [@fadeInSlideUp]="showAnimations ? 'in' : 'void'">
+            <input
+              type="password"
+              id="password"
+              formControlName="password"
+              class="form-control"
+              placeholder="Contraseña">
+          </div>
+
+          <button type="submit" class="login-button" [@fadeInSlideUp]="showAnimations ? 'in' : 'void'">
+            Iniciar sesión
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

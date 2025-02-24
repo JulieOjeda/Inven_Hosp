@@ -8,11 +8,13 @@ import { LoginComponent } from './pages/login/login.component';
 import { GearBoardComponent } from './components/gear/gear-board/gear-board.component';
 import { AreasBoardComponent } from './components/areas/areas-board/areas-board.component';
 import { ReportBoardComponent } from './components/report/report-board/report-board.component';
+import {authGuard} from './shared/guard/auth.guard';
 
 export const routes: Routes = [
   {
     path: '',
     component: HomeComponent,  // Usa el layout con sidebar y navbar
+    canActivate: [authGuard],
     children: [
       {
         path: 'board/gear',
@@ -37,7 +39,7 @@ export const routes: Routes = [
     ]
   },
   {
-    path : "logout",
+    path : "login",
     component : LoginComponent
   }
 ];

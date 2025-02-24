@@ -1,6 +1,17 @@
 <div class="notification-container">
-  <div *ngFor="let notification of notifications" class="notification">
-    <span>{{ notification.message }}</span>
-    <button (click)="removeNotification(notification)">X</button>
+  <div *ngFor="let notification of notifications" class="notification mat-elevation-z4">
+    <div class="notification-header">
+      <!-- Ícono de notificación -->
+      <mat-icon class="notification-icon">notifications</mat-icon>
+      <span class="notification-message">{{ notification.message }}</span>
+      <!-- Botón para cerrar la notificación -->
+      <button mat-icon-button class="close-button" (click)="removeNotification(notification)">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+    <!-- Contenido de la notificación -->
+    <div class="notification-content" *ngIf="notification.gear">
+      <app-gear-view-card [gear]="notification.gear"></app-gear-view-card>
+    </div>
   </div>
 </div>
