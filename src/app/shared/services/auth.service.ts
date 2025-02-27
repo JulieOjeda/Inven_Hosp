@@ -27,4 +27,19 @@ export class AuthService {
   redirectToLogin(){
     this.router.navigate(["/login"])
   }
+
+  isTokenExpired(): boolean {
+    const token = this.getToken(); // Obtén el token del almacenamiento
+    if (!token) {
+      return true; // Si no hay token, se considera expirado
+    }
+
+    // Decodifica el token (asumiendo que es un JWT)
+    const tokenData = JSON.parse(atob(token.split('.')[1])); // Decodifica la parte del payload
+    const expirationDate = new Date(tokenData.exp * 1000); // Convierte la fecha de expiración
+    const now = new Date();
+
+    // Compara la fecha de expiración con la fecha actual
+    return expirationDate <= now;
+  }
 }

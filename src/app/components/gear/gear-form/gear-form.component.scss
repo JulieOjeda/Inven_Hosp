@@ -24,17 +24,33 @@
 .form-label {
   width: 150px;
   font-weight: bold;
-  text-align: right;
+  text-align: center;
+  background-color: #84B6F4;
+  min-height: 28px;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  color: white;
 }
 
 .form-field {
   flex: 1;
+  background-color: rgba(196, 218, 250, 0.48);
+  border: none;
+  height: 56px;
 }
 
 mat-form-field {
   width: 100%;
+
 }
 
+.step-title{
+  background-color: #005187;
+  color: white;
+  text-align: center;
+  border: 1px solid transparent;
+  border-radius: 5px;
+}
 /* Responsive */
 @media (max-width: 768px) {
   .form-row {

@@ -3,7 +3,7 @@
     <ng-container *ngFor="let step of steps">
       <ng-template carouselSlide>
         <div class="step">
-          <h2>{{ step.title }}</h2>
+          <h2 class="step-title">{{ step.title }}</h2>
           <form [formGroup]="step.form">
             <div class="gear-form-grid">
               <div *ngFor="let controlName of getControls(step.form)" class="form-row">

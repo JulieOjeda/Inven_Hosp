@@ -4,9 +4,10 @@ import {AuthService} from '../services/auth.service';
 
 export const authGuard: CanActivateFn = (route, state) => {
   const authService = inject(AuthService)
-  if (authService.getToken()) {
+  if (authService.getToken() && !authService.isTokenExpired()) {
     return true
   } else {
+    authService.removeToken()
     authService.redirectToLogin()
     return false;
   }

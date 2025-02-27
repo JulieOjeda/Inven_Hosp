@@ -1,20 +1,27 @@
 /* src/app/components/gear/gear-view/gear-view.component.css */
 .gear-details {
-  margin: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 table {
-  width: 100%;
+  width: 75%;
   border-collapse: collapse;
 }
 
 th, td {
   padding: 8px;
-  border: 1px solid #ddd;
 }
 
 th {
-  background-color: #f4f4f4;
+  background-color: rgba(196, 218, 250, 0.48);
+  color: #333333;
+  border: 1px solid white;
+}
+
+td{
+  border: 1px solid rgba(196, 218, 250, 0.48);
 }
 
 h2 {
@@ -25,4 +32,13 @@ h2 {
   max-width: 150px;
   max-height: 150px;
   object-fit: cover;
+}
+
+.gear-view-title{
+  background-color: #005187;
+  color: white;
+  text-align: center;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  width: 300px;
 }

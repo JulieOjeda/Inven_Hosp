@@ -7,6 +7,7 @@ import {OwlOptions} from 'ngx-owl-carousel-o';
 import {AreasService} from '../../../services/areas.service';
 import {Areas} from '../../../interfaces/models/areas.model';
 import {AreaApiService} from '../../../api/area.api.service';
+import {GearService} from '../../../services/gear.service';
 @Component({
   selector: 'app-gear-form',
   standalone: false,
@@ -59,6 +60,7 @@ export class GearFormComponent implements OnInit{
   labels = ["nombre", "modelo de dispositivo", "numero de serie", "area", "fabricante", "descripcion", "resolucion", "fuente de energia", "tamaño", "conectivida", "año de fabricacion", "garantia", "datos extras", "Imagen","fecha de puesta en marcha", "descripcion para mantenimiento", "responsable", "frecuencia de mantenimiento" ]
   selectedArea: string = "";
   constructor(private _gearService: GearApiService,
+    private gearService: GearService,
     private _router:Router,
     private areasService: AreasService,
     private areaApiService: AreaApiService
@@ -138,6 +140,7 @@ export class GearFormComponent implements OnInit{
       console.log(data.frequencyMaintenance)
       data.frequencyMaintenance = data.frequencyMaintenance  * multiplier
       this._gearService.createGear(data).subscribe((gear: Gear)=>{
+        this.gearService.addItemToList(gear)
         this._router.navigate(['board/gear/'+ gear._id]);
       })
     } else {

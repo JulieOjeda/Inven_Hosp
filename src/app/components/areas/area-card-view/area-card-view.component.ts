@@ -36,12 +36,15 @@ export class AreaCardViewComponent implements OnInit{
     imgElement.src = this.defaultImage; // Cambia la fuente de la imagen al SVG por defecto
   }
 
-  goToItemsEvent() {
-    this._router.navigate(['board/gear/'], { queryParams: { filter: this.area.name } });
+  goToItemsEvent(event: MouseEvent) {
+    let target = event.target as HTMLElement
+    if(target.className != "material-icons" && target.parentElement?.className != "card-image" && !this.isEditingDescription){
+      this._router.navigate(['board/gear/'], { queryParams: { filter: this.area.name } });
+    }
   }
 
   triggerImageUpload(event: Event): void {
-    event.stopPropagation(); // Evita que el clic se propague a la tarjeta
+    event.stopImmediatePropagation(); // Evita que el clic se propague a la tarjeta
     const fileInput = document.getElementById('imageUpload') as HTMLInputElement;
     fileInput.click(); // Simula el clic en el input de archivo
   }
@@ -71,7 +74,7 @@ export class AreaCardViewComponent implements OnInit{
   // Método para iniciar la edición de la descripción
 
   startEditingDescription(event: Event): void {
-    event.stopPropagation(); // Evita que el clic se propague a la tarjeta
+    event.preventDefault(); // Evita que el clic se propague a la tarjeta
     this.tempDescription = this.area.description || ''; // Copia la descripción actual
     this.isEditingDescription = true; // Activa el modo edición
   }

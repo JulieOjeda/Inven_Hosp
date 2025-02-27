@@ -40,6 +40,7 @@ import { NotificationComponent } from './shared/components/notification/notifica
 import {MatCard, MatCardContent, MatCardHeader, MatCardTitle} from '@angular/material/card';
 import {authInterceptor} from './shared/utils/interceptor/auth.interceptor';
 import {authGuard} from './shared/guard/auth.guard';
+import { GearNotificationComponent } from './components/gear/gear-notification/gear-notification.component';
 
 @NgModule({
   declarations: [
@@ -62,7 +63,8 @@ import {authGuard} from './shared/guard/auth.guard';
     CamelCaseToNormalPipe,
     AreaCardViewComponent,
     ReportTaskComponent,
-    NotificationComponent
+    NotificationComponent,
+    GearNotificationComponent
   ],
   imports: [
     BrowserModule,

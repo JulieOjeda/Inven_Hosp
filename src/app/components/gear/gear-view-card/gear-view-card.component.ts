@@ -9,7 +9,6 @@ import { Gear } from '../../../interfaces/models/gear.model';
   styleUrl: './gear-view-card.component.scss'
 })
 export class GearViewCardComponent implements OnInit {
-
   @Input() gear: Gear | null = null;
   imageUrl : string
 

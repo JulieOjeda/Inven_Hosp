@@ -3,6 +3,7 @@ import { ClientService } from '../../services/client.service';
 import { ClientModel } from '../../interfaces/models/client.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { routes } from '../../../app-routing.module';
+import {AuthService} from '../../services/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -15,7 +16,8 @@ export class HeaderComponent {
   client: ClientModel
   constructor(private clientService: ClientService,
     private _router: Router,
-    private activatedRoute : ActivatedRoute
+    private activatedRoute : ActivatedRoute,
+    private authService: AuthService
   ){
     this.client = clientService.getCurrentClient()
   }
@@ -25,6 +27,7 @@ export class HeaderComponent {
   }
 
   public clickLogoutEvent(){
-    this._router.navigate(["/logout"])
+    this.authService.removeToken()
+    this._router.navigate(["/login"])
   }
 }

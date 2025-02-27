@@ -12,7 +12,7 @@ export class ClientService {
       _id : 1,
       adress: "por ahis",
       logoId: "2113a5sd4sa56",
-      name : "Hospital Viedma"
+      name : "SIMEQ"
     }
   }
   setCurrentClient(client: ClientModel): void {

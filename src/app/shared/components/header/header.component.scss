@@ -3,15 +3,16 @@
   justify-content: space-between;
   align-items: center;
   padding: 0 16px;
-  background-color: #1abc9c;
+  background-color: #4D82BC;
 }
 
 .header-title {
   flex-grow: 1;
   text-align: center;
-  font-size: 1.2rem;
+  font-size: 2rem;
   font-weight: bold;
-  color: #34495e;
+  color: white;
+  font-family: 'Consolas', 'Menlo', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', monospace;
 }
 
 .header-buttons {
