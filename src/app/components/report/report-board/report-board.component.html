@@ -1,34 +1,38 @@
-<h3 *ngIf="errorMensaje" style="{color: #34495e}">{{errorMensaje}}</h3>
-<div class="report-board" cdkDropListGroup>
+<div class="report-board-container">
+  <h2 class="report-board-title">Reportes</h2>
+  <h3 *ngIf="errorMensaje" style="{color: #34495e}">{{errorMensaje}}</h3>
+  <div class="report-board" cdkDropListGroup>
 
-  <div class="column" [id]="'pendiente'" cdkDropList [cdkDropListData]="pendienteTasks" (cdkDropListDropped)="drop($event)" [cdkDropListEnterPredicate]="canDrop">
-    <h3>Pendiente</h3>
-    <app-report-task
-      *ngFor="let task of pendienteTasks"
-      [reportTask]="task"
-      cdkDrag
-      [cdkDragData]="task"
-    ></app-report-task>
-  </div>
+    <div class="column" [id]="'pendiente'" cdkDropList [cdkDropListData]="pendienteTasks" (cdkDropListDropped)="drop($event)" [cdkDropListEnterPredicate]="canDrop">
+      <h3>Pendiente</h3>
+      <app-report-task
+        *ngFor="let task of pendienteTasks"
+        [reportTask]="task"
+        cdkDrag
+        [cdkDragData]="task"
+      ></app-report-task>
+    </div>
 
-  <div class="column" [id]="'completado'" cdkDropList [cdkDropListData]="completadoTasks" (cdkDropListDropped)="drop($event)" [cdkDropListEnterPredicate]="canDrop">
-    <h3>Completado</h3>
-    <app-report-task
-      *ngFor="let task of completadoTasks"
-      [reportTask]="task"
-      cdkDrag
-      [cdkDragData]="task"
-    ></app-report-task>
-  </div>
+    <div class="column" [id]="'completado'" cdkDropList [cdkDropListData]="completadoTasks" (cdkDropListDropped)="drop($event)" [cdkDropListEnterPredicate]="canDrop">
+      <h3>Completado</h3>
+      <app-report-task
+        *ngFor="let task of completadoTasks"
+        [reportTask]="task"
+        cdkDrag
+        [cdkDragData]="task"
+      ></app-report-task>
+    </div>
 
-  <div class="column" [id]="'caducado'" cdkDropList [cdkDropListData]="caducadoTasks" (cdkDropListDropped)="drop($event)" [cdkDropListEnterPredicate]="canDrop">
-    <h3>Caducado</h3>
-    <app-report-task
-      *ngFor="let task of caducadoTasks"
-      [reportTask]="task"
-      cdkDrag
-      [cdkDragData]="task"
-    ></app-report-task>
+    <div class="column" [id]="'caducado'" cdkDropList [cdkDropListData]="caducadoTasks" (cdkDropListDropped)="drop($event)" [cdkDropListEnterPredicate]="canDrop">
+      <h3>Caducado</h3>
+      <app-report-task
+        *ngFor="let task of caducadoTasks"
+        [reportTask]="task"
+        cdkDrag
+        [cdkDragData]="task"
+      ></app-report-task>
+    </div>
+
   </div>
 
 </div>

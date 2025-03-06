@@ -16,7 +16,6 @@ export class GearNotificationComponent {
   }
 
   ngOnInit(): void {
-    debugger
     this.imageUrl = 'http://localhost:3000/images/uploads/' + this.gear?.photo
   }
 }

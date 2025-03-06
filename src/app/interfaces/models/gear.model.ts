@@ -21,4 +21,5 @@ export interface Gear {
   descriptionMaintenance: string;
   responsible: string;
   frequencyMaintenance : number
+  withNotification ?: boolean
 }

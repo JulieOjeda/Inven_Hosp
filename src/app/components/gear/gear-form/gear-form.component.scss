@@ -12,7 +12,7 @@
 .gear-form-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 15px;
+  gap: 25px;
 }
 
 .form-row {
@@ -37,6 +37,7 @@
   background-color: rgba(196, 218, 250, 0.48);
   border: none;
   height: 56px;
+  border-bottom: 15px;
 }
 
 mat-form-field {
@@ -78,4 +79,46 @@ mat-form-field {
   border: 1px solid #ccc; /* Borde ligero */
   padding: 4px;
   background: #f9f9f9;
+}
+
+.button-submit-form{
+  margin-top: 75px;
+  margin-left: 46%;
+  background-color: #005187;
+  color: white;
+
+  &:hover{
+    background-color: #4D82BC;
+  }
+}
+
+.flecha-izquierda {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-left: 2px solid white;
+  border-bottom: 2px solid white;
+  transform: rotate(45deg);
+}
+
+/* Flecha derecha */
+.flecha-derecha {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-right: 2px solid white;
+  border-bottom: 2px solid white;
+  transform: rotate(-45deg);
+}
+.owl-theme .owl-nav [class*=owl-] {
+  background-color: #005187;
+
+  &:hover{
+    background-color: #4D82BC;
+  }
+}
+
+
+.mdc-text-field--outlined:not(.mdc-text-field--disabled) .mat-mdc-notch-piece {
+  border-color: #4D82BC;
 }

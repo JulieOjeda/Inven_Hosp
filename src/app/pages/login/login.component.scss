@@ -103,6 +103,7 @@
   color: white;
   font-size: 1rem;
   transition: border-color 0.3s ease;
+  caret-color: white; // <-- Añade esta línea para cambiar el color del cursor
 
   &::placeholder {
     color: rgba(255, 255, 255, 0.7);
@@ -112,8 +113,22 @@
     outline: none;
     border-bottom-color: #90cdf4;
   }
-}
 
+  // Estilos para campos autocompletados
+  &:-webkit-autofill,
+  &:-webkit-autofill:hover,
+  &:-webkit-autofill:focus,
+  &:-webkit-autofill:active {
+    -webkit-text-fill-color: white !important;
+    -webkit-box-shadow: 0 0 0px 1000px transparent inset !important;
+    transition: background-color 5000s ease-in-out 0s;
+    caret-color: white; // <-- Asegura que el cursor sea blanco incluso en autocompletado
+  }
+
+  &:-webkit-autofill {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3) !important;
+  }
+}
 .login-button {
   width: 100%;
   padding: 0.75rem;

@@ -1,13 +1,13 @@
 <div class="gear-form-container" *ngIf="steps.length > 0">
   <owl-carousel-o [options]="customOptions">
-    <ng-container *ngFor="let step of steps">
+    <ng-container *ngFor="let step of steps; let last = last" >
       <ng-template carouselSlide>
         <div class="step">
           <h2 class="step-title">{{ step.title }}</h2>
           <form [formGroup]="step.form">
             <div class="gear-form-grid">
               <div *ngFor="let controlName of getControls(step.form)" class="form-row">
-                <label class="form-label" [for]="controlName">{{ getLabel(controlName) | titlecase }}</label>
+                <label class="form-label" [for]="controlName">{{ getLabel(controlName) }}</label>
 
                 <!-- Selector de área -->
                 <mat-form-field *ngIf="controlName === 'areaAssigned'" appearance="outline" class="form-field">
@@ -65,15 +65,15 @@
                   </mat-select>
                 </mat-form-field>
 
+
               </div>
             </div>
           </form>
+          <button class="button-submit-form" mat-raised-button *ngIf="last" color="primary" (click)="onSubmit()">
+            Enviar
+          </button>
         </div>
       </ng-template>
     </ng-container>
   </owl-carousel-o>
-
-  <button mat-raised-button color="primary" (click)="onSubmit()">
-    Enviar
-  </button>
 </div>

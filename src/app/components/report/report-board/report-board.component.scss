@@ -1,7 +1,15 @@
+.report-board-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width  : 100%;
+  justify-content: center;
+}
 .report-board {
   display: flex;
   gap: 16px;
   padding: 16px;
+  width: 95%;
 }
 
 .column {
@@ -16,4 +24,13 @@ h3 {
   margin-top: 0;
   font-size: 18px;
   color: #333;
+}
+
+.report-board-title{
+  background-color: #005187;
+  color: white;
+  text-align: center;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  width: 200px;
 }

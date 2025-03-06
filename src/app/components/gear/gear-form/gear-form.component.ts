@@ -1,19 +1,25 @@
-import {Component, OnInit} from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { GearApiService} from '../../../api/gear.api.service';
-import { Router } from '@angular/router';
-import { Gear } from '../../../interfaces/models/gear.model';
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {GearApiService} from '../../../api/gear.api.service';
+import {Router} from '@angular/router';
+import {Gear} from '../../../interfaces/models/gear.model';
 import {OwlOptions} from 'ngx-owl-carousel-o';
 import {AreasService} from '../../../services/areas.service';
 import {Areas} from '../../../interfaces/models/areas.model';
 import {AreaApiService} from '../../../api/area.api.service';
 import {GearService} from '../../../services/gear.service';
+import {NotificationService} from "../../../services/notification.service";
+import {ReportService} from '../../../services/report.service';
+import {ReportApiService} from '../../../api/report.api.service';
+import {Report} from '../../../interfaces/models/report.model';
+
 @Component({
   selector: 'app-gear-form',
   standalone: false,
 
   templateUrl: './gear-form.component.html',
-  styleUrl: './gear-form.component.scss'
+  styleUrl: './gear-form.component.scss',
+  encapsulation: ViewEncapsulation.None
 })
 export class GearFormComponent implements OnInit{
   selectedFrequencyUnit: string = 'day';
@@ -33,7 +39,8 @@ export class GearFormComponent implements OnInit{
     pullDrag: true,   // Habilita el arrastre al deslizar
     dots: false,      // Oculta los puntos de navegación
     navSpeed: 700,    // Velocidad de la navegación
-    navText: ['<', '>'],  // Texto para los botones de navegación
+    navText: ['<i class="flecha-izquierda"></i>', // Flecha izquierda
+      '<i class="flecha-derecha"></i>'],
     responsive: {
       0: {
         items: 1  // Solo muestra 1 elemento en pantallas pequeñas
@@ -57,13 +64,16 @@ export class GearFormComponent implements OnInit{
   public lifeInformation: FormGroup
   public additionalInfo: FormGroup
   label = new Map<string, string>();
-  labels = ["nombre", "modelo de dispositivo", "numero de serie", "area", "fabricante", "descripcion", "resolucion", "fuente de energia", "tamaño", "conectivida", "año de fabricacion", "garantia", "datos extras", "Imagen","fecha de puesta en marcha", "descripcion para mantenimiento", "responsable", "frecuencia de mantenimiento" ]
+  labels = ["Nombre", "Modelo de dispositivo", "Numero de serie", "Area", "Fabricante", "Descripcion", "Resolucion", "Fuente de energia", "Tamaño(Kg)", "Conectividad", "Año de fabricacion", "Garantia", "Datos extras", "Imagen","Fecha de puesta en marcha", "Descripcion para mantenimiento", "Responsable", "Frecuencia de mantenimiento" ]
   selectedArea: string = "";
   constructor(private _gearService: GearApiService,
     private gearService: GearService,
     private _router:Router,
     private areasService: AreasService,
-    private areaApiService: AreaApiService
+    private areaApiService: AreaApiService,
+    private notificationService: NotificationService,
+    private reportService : ReportService,
+    private reportApiService : ReportApiService
   ) {
     this.generalInfo = new FormGroup({
       name: new FormControl('', [Validators.required, Validators.maxLength(100)]),
@@ -139,9 +149,13 @@ export class GearFormComponent implements OnInit{
       )?.daysValue || 1
       console.log(data.frequencyMaintenance)
       data.frequencyMaintenance = data.frequencyMaintenance  * multiplier
-      this._gearService.createGear(data).subscribe((gear: Gear)=>{
-        this.gearService.addItemToList(gear)
-        this._router.navigate(['board/gear/'+ gear._id]);
+      this._gearService.createGear(data).subscribe((gear: any)=>{
+        this.reportApiService.getReports().subscribe( (reports: Report[]) =>{
+          this.reportService.updateList(reports)
+        })
+        this.gearService.addItemToList(gear.gearRes)
+        this._router.navigate(['board/gear/'+ gear.gearRes._id]);
+        if (gear.withNotifications) this.notificationService.triggerRefresh()
       })
     } else {
       console.log('Formulario no válido');

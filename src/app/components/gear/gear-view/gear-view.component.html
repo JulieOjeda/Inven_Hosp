@@ -1,66 +1,97 @@
 <!-- src/app/components/gear/gear-view/gear-view.component.html -->
 <div class="gear-details">
   <h2 class="gear-view-title">Detalles del Equipo</h2>
-  <table class="table">
-    <tr>
-      <th>Nombre</th>
-      <td>{{ gear?.name }}</td>
-    </tr>
-    <tr>
-      <th>Modelo</th>
-      <td>{{ gear?.deviceModel }}</td>
-    </tr>
-    <tr>
-      <th>Serial Number</th>
-      <td>{{ gear?.serialNumber }}</td>
-    </tr>
-    <tr>
-      <th>Fabricante</th>
-      <td>{{ gear?.manufacturer }}</td>
-    </tr>
-    <tr>
-      <th>Año de Fabricación</th>
-      <td>{{ gear?.manufacturingYear }}</td>
-    </tr>
-    <tr>
-      <th>Peso</th>
-      <td>{{ gear?.weight }} kg</td>
-    </tr>
-    <tr>
-      <th>Resolución de Pantalla</th>
-      <td>{{ gear?.screenResolution }}</td>
-    </tr>
-    <tr>
-      <th>Suministro Eléctrico</th>
-      <td>{{ gear?.powerSupply }}</td>
-    </tr>
-    <tr>
-      <th>Conectividad</th>
-      <td>{{ gear?.connectivity }}</td>
-    </tr>
-    <tr>
-      <th>Garantía</th>
-      <td>{{ gear?.warranty }}</td>
-    </tr>
-    <tr>
-      <th>Fecha de Inicio</th>
-      <td>{{ gear?.startingDate | date: 'dd/MM/yyyy' }}</td>
-    </tr>
-    <tr>
-      <th>Responsable</th>
-      <td>{{ gear?.responsible }}</td>
-    </tr>
-    <tr>
-      <th>Descripción de Mantenimiento</th>
-      <td>{{ gear?.descriptionMaintenance }}</td>
-    </tr>
-    <tr>
-      <th>Data Extra</th>
-      <td>{{ gear?.extraData}}</td>
-    </tr>
-    <tr *ngIf="gear?.photo">
-      <th>Foto</th>
-      <td><img [src]="'http://localhost:3000/images/uploads/'+gear?.photo" alt="Foto del equipo" class="gear-photo"></td>
-    </tr>
-  </table>
+  <div class="gear-info-grid">
+    <!-- Información General -->
+    <div class="info-group">
+      <h3 class="group-title">Información General</h3>
+      <div class="info-item">
+        <span class="info-label">Nombre</span>
+        <span class="info-value">{{ gear?.name }}</span>
+      </div>
+      <div class="info-item">
+        <span class="info-label">Modelo de dispositivo</span>
+        <span class="info-value">{{ gear?.deviceModel }}</span>
+      </div>
+      <div class="info-item">
+        <span class="info-label">Número de serie</span>
+        <span class="info-value">{{ gear?.serialNumber }}</span>
+      </div>
+      <div class="info-item">
+        <span class="info-label">Área asignada</span>
+        <span class="info-value">{{ gear?.areaAssigned }}</span>
+      </div>
+      <div class="info-item">
+        <span class="info-label">Fabricante</span>
+        <span class="info-value">{{ gear?.manufacturer }}</span>
+      </div>
+      <div class="info-item">
+        <span class="info-label">Descripción</span>
+        <span class="info-value">{{ gear?.description }}</span>
+      </div>
+    </div>
+
+    <!-- Información Técnica -->
+    <div class="info-group">
+      <h3 class="group-title">Información Técnica</h3>
+      <div class="info-item">
+        <span class="info-label">Resolución de pantalla</span>
+        <span class="info-value">{{ gear?.screenResolution }}</span>
+      </div>
+      <div class="info-item">
+        <span class="info-label">Fuente de energía</span>
+        <span class="info-value">{{ gear?.powerSupply }}</span>
+      </div>
+      <div class="info-item">
+        <span class="info-label">Peso</span>
+        <span class="info-value">{{ gear?.weight }} kg</span>
+      </div>
+      <div class="info-item">
+        <span class="info-label">Conectividad</span>
+        <span class="info-value">{{ gear?.connectivity }}</span>
+      </div>
+    </div>
+
+    <!-- Información Adicional -->
+    <div class="info-group">
+      <h3 class="group-title">Información Adicional</h3>
+      <div class="info-item">
+        <span class="info-label">Año de fabricación</span>
+        <span class="info-value">{{ gear?.manufacturingYear }}</span>
+      </div>
+      <div class="info-item">
+        <span class="info-label">Garantía</span>
+        <span class="info-value">{{ gear?.warranty }}</span>
+      </div>
+      <div class="info-item">
+        <span class="info-label">Datos extras</span>
+        <span class="info-value">{{ gear?.extraData }}</span>
+      </div>
+      <div class="info-item" *ngIf="gear?.photo">
+        <span class="info-label">Imagen</span>
+        <img [src]="'http://localhost:3000/images/uploads/'+gear?.photo" alt="Foto del equipo" class="gear-photo">
+      </div>
+    </div>
+
+    <!-- Hoja de Vida -->
+    <div class="info-group">
+      <h3 class="group-title">Hoja de Vida</h3>
+      <div class="info-item">
+        <span class="info-label">Fecha de puesta en marcha</span>
+        <span class="info-value">{{ gear?.startingDate | date: 'dd/MM/yyyy' }}</span>
+      </div>
+      <div class="info-item">
+        <span class="info-label">Descripción de mantenimiento</span>
+        <span class="info-value">{{ gear?.descriptionMaintenance }}</span>
+      </div>
+      <div class="info-item">
+        <span class="info-label">Responsable</span>
+        <span class="info-value">{{ gear?.responsible }}</span>
+      </div>
+      <div class="info-item">
+        <span class="info-label">Frecuencia de mantenimiento</span>
+        <span class="info-value">{{ gear?.frequencyMaintenance }}</span>
+      </div>
+    </div>
+  </div>
 </div>

@@ -13,7 +13,7 @@
     width: 100%;
     flex-direction: column;
     align-items: center;
-    justify-content: space-around;
+    justify-content: center;
 }
 
 .gear-board-filter{
@@ -29,4 +29,13 @@
     flex-direction: column;
     width: 100%;
     height: 80%;
+}
+
+.gear-board-title{
+  background-color: #005187;
+  color: white;
+  text-align: center;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  width: 200px;
 }

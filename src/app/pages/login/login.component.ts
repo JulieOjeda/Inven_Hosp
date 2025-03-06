@@ -1,8 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule } from '@angular/forms';
-import { trigger, state, style, animate, transition } from '@angular/animations';
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {animate, style, transition, trigger} from '@angular/animations';
 import {AuthApiService} from '../../api/auth.api.service';
 import {Router} from '@angular/router';
 
@@ -24,7 +22,8 @@ import {Router} from '@angular/router';
         animate('300ms ease-out', style({ opacity: 1, transform: 'translateY(0)' }))
       ])
     ])
-  ]
+  ],
+  encapsulation: ViewEncapsulation.None
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
