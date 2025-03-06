@@ -41,6 +41,7 @@ import {MatCard, MatCardContent, MatCardHeader, MatCardTitle} from '@angular/mat
 import {authInterceptor} from './shared/utils/interceptor/auth.interceptor';
 import {authGuard} from './shared/guard/auth.guard';
 import { GearNotificationComponent } from './components/gear/gear-notification/gear-notification.component';
+import { DurationPipe } from './pipes/duration.pipe';
 
 @NgModule({
   declarations: [
@@ -64,7 +65,8 @@ import { GearNotificationComponent } from './components/gear/gear-notification/g
     AreaCardViewComponent,
     ReportTaskComponent,
     NotificationComponent,
-    GearNotificationComponent
+    GearNotificationComponent,
+    DurationPipe
   ],
   imports: [
     BrowserModule,

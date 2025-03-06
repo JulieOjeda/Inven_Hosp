@@ -22,4 +22,5 @@ export interface Gear {
   responsible: string;
   frequencyMaintenance : number
   withNotification ?: boolean
+  maintenanceAt: Date
 }

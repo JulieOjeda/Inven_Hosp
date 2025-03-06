@@ -31,6 +31,27 @@
       </div>
     </div>
 
+    <div class="info-group">
+      <h3 class="group-title">Información Adicional</h3>
+      <div class="info-item">
+        <span class="info-label">Año de fabricación</span>
+        <span class="info-value">{{ gear?.manufacturingYear }}</span>
+      </div>
+      <div class="info-item">
+        <span class="info-label">Garantía</span>
+        <span class="info-value">{{ gear?.warranty }}</span>
+      </div>
+      <div class="info-item">
+        <span class="info-label">Datos extras</span>
+        <span class="info-value">{{ gear?.extraData }}</span>
+      </div>
+      <div class="info-item" *ngIf="gear?.photo">
+        <span class="info-label">Imagen</span>
+        <img [src]="'http://localhost:3000/images/uploads/'+gear?.photo" alt="Foto del equipo" class="gear-photo">
+      </div>
+    </div>
+    <!-- Información Adicional -->
+
     <!-- Información Técnica -->
     <div class="info-group">
       <h3 class="group-title">Información Técnica</h3>
@@ -52,26 +73,7 @@
       </div>
     </div>
 
-    <!-- Información Adicional -->
-    <div class="info-group">
-      <h3 class="group-title">Información Adicional</h3>
-      <div class="info-item">
-        <span class="info-label">Año de fabricación</span>
-        <span class="info-value">{{ gear?.manufacturingYear }}</span>
-      </div>
-      <div class="info-item">
-        <span class="info-label">Garantía</span>
-        <span class="info-value">{{ gear?.warranty }}</span>
-      </div>
-      <div class="info-item">
-        <span class="info-label">Datos extras</span>
-        <span class="info-value">{{ gear?.extraData }}</span>
-      </div>
-      <div class="info-item" *ngIf="gear?.photo">
-        <span class="info-label">Imagen</span>
-        <img [src]="'http://localhost:3000/images/uploads/'+gear?.photo" alt="Foto del equipo" class="gear-photo">
-      </div>
-    </div>
+
 
     <!-- Hoja de Vida -->
     <div class="info-group">
@@ -90,7 +92,11 @@
       </div>
       <div class="info-item">
         <span class="info-label">Frecuencia de mantenimiento</span>
-        <span class="info-value">{{ gear?.frequencyMaintenance }}</span>
+        <span class="info-value">{{ gear?.frequencyMaintenance | duration }}</span>
+      </div>
+      <div class="info-item">
+        <span class="info-label">Fecha de siguiente mantenimiento</span>
+        <span class="info-value">{{ gear?.maintenanceAt | date }}</span>
       </div>
     </div>
   </div>
