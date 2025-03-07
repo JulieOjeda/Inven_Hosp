@@ -9,6 +9,7 @@
   max-width: 600px; /* Ancho máximo de la tarjeta */
   width: 100%;
   font-family: Arial, sans-serif;
+  overflow: hidden;
 }
 
 .card:hover {
@@ -36,14 +37,12 @@
   flex: 1; /* La imagen ocupa 1 parte del espacio */
   position: relative;
   border-radius: 8px;
-  overflow: hidden;
   max-width: 150px; /* Limitamos el ancho de la imagen */
 }
 
 .card-image img {
   width: 100%;
   height: auto;
-  display: block;
   border-radius: 8px;
 }
 

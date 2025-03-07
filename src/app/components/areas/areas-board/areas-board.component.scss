@@ -1,36 +1,60 @@
-.areas-board-container{
+.areas-board-container {
   display: flex;
-  width: 100%;
   flex-direction: column;
   align-items: center;
-}
-.card-list {
-  display: flex;
-  flex-direction: column; /* Una sola columna */
-  gap: 16px; /* Espacio entre las tarjetas */
-  width: 90%;
-}
-
-/* Alternar la alineación de las tarjetas */
-app-area-card-view:nth-child(odd) {
-  align-self: flex-start; /* Alinea a la izquierda */
+  width: 100%;
+  padding: 20px; /* Reducido el padding */
+  background-color: #f5f7fa;
+  border-radius: 12px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
 }
 
-app-area-card-view:nth-child(even) {
-  align-self: flex-end; /* Alinea a la derecha */
-}
-
-/* Estilos adicionales para las tarjetas */
-app-area-card-view {
-  width: 80%; /* Ancho de las tarjetas (ajusta según necesites) */
-  max-width: 400px; /* Ancho máximo de cada tarjeta */
-}
-
-.areas-title{
+.areas-title {
   background-color: #005187;
   color: white;
   text-align: center;
-  border: 1px solid transparent;
-  border-radius: 5px;
-  width: 150px;
+  border-radius: 25px;
+  padding: 8px 20px; /* Menos padding */
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
+}
+
+.areas-title:hover {
+  background-color: #003d5c;
+}
+
+.card-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  max-width: 1000px;
+  justify-content: center;
+  margin-bottom: 30px; /* Reducido también el margen */
+}
+
+app-area-card-view {
+  background: white;
+  padding: 15px; /* Menos padding */
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+app-area-card-view:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+.no-areas-message {
+  text-align: center;
+  color: #888;
+  font-size: 1.2rem;
+  padding: 20px;
+  background-color: #f7f9fc;
+  border-radius: 12px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
 }

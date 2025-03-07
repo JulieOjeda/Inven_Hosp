@@ -3,13 +3,16 @@
   <div class="gear-card-content">
     <div class="gear-card-header">
       <img [src]="imageUrl | fallbacksrc:'/assets/images/default-gear.svg'" alt="Imagen del dispositivo" class="gear-image">
+    </div>
+    <div class="gear-card-details">
       <div class="gear-title">
         <h2>{{ gear?.name }}</h2>
       </div>
-    </div>
-    <div class="gear-card-details">
       <div class="gear-detail">
-        <strong>Fecha de Inicio:</strong> {{ gear?.startingDate | date: 'dd/MM/yyyy' }}
+        <strong>Responsable:</strong> {{ gear?.responsible }}
+      </div>
+      <div class="gear-detail">
+        <strong>Area:</strong> {{ gear?.areaAssigned  }}
       </div>
     </div>
   </div>

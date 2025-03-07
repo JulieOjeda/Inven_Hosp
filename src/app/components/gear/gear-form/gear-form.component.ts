@@ -143,12 +143,8 @@ export class GearFormComponent implements OnInit{
         ...this.additionalInfo.value,
         ...this.lifeInformation.value
       };
-      let multiplier = this.frequencyUnits.find(
-        (unit)=>
-        {unit.value === this.selectedFrequencyUnit}
-      )?.daysValue || 1
-      console.log(data.frequencyMaintenance)
-      data.frequencyMaintenance = data.frequencyMaintenance  * multiplier
+      let frequencyDays = this.getFrequencyMaintenanceDays(data.frequencyMaintenance)
+      data.frequencyMaintenance = frequencyDays
       this._gearService.createGear(data).subscribe((gear: any)=>{
         this.reportApiService.getReports().subscribe( (reports: Report[]) =>{
           this.reportService.updateList(reports)
@@ -252,5 +248,14 @@ export class GearFormComponent implements OnInit{
   onFrequencyUnitChange(unit: string) {
     this.selectedFrequencyUnit = unit;
     console.log('Unidad de tiempo seleccionada:', unit);
+  }
+
+  private getFrequencyMaintenanceDays(frequencyMaintenance: number) {
+    let freq = this.frequencyUnits.find(
+      (unit)=> unit.value === this.selectedFrequencyUnit
+    )
+    let multiplier = freq?.daysValue || 1
+
+    return frequencyMaintenance * multiplier
   }
 }
